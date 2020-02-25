@@ -6,7 +6,7 @@ import { IriStoreModule } from './iri-store/iri-store.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/iri-api', { useNewUrlParser: true }),
+    MongooseModule.forRoot('mongodb://localhost/iri-api', { useNewUrlParser: true, useUnifiedTopology: true }),
     IriStoreModule,
   ],
   controllers: [AppController],
