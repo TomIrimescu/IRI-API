@@ -15,6 +15,7 @@ export class IriStoreService {
     }
 
     async getProduct(productID): Promise<Product> {
+        console.log('@Get Product ID: ' + productID);
         const product = await this.productModel
             .findById(productID)
             .exec();
@@ -29,6 +30,7 @@ export class IriStoreService {
     }
 
     async editProduct(productID, createProductDTO: CreateProductDTO): Promise<Product> {
+        console.log('@Put Product ID: ' + productID);
         const editedProduct = await this.productModel
             .findByIdAndUpdate(productID, createProductDTO, { new: true });
             console.log('show edited product:\n' + editedProduct);
@@ -36,6 +38,7 @@ export class IriStoreService {
     }
 
     async deleteProduct(productID): Promise<any> {
+        console.log('@Delete Product ID: ' + productID);
         const deletedProduct = await this.productModel
             .findByIdAndRemove(productID);
             console.log('show deleted product:\n' + deletedProduct);

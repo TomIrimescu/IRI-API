@@ -9,6 +9,7 @@ import * as mongoose from 'mongoose';
 export class ValidateObjectId implements PipeTransform<string> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async transform(value: string, metadata: ArgumentMetadata) {
+    console.log('ValidateObjectId: ' + value);
     const isValid = mongoose.Types.ObjectId.isValid(value);
     if (!isValid) {
         throw new BadRequestException('Invalid ID!');

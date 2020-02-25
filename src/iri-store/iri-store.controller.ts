@@ -47,7 +47,10 @@ export class IriStoreController {
         if (!product) {
             throw new NotFoundException('Product does not exist!');
         }
-        return res.status(HttpStatus.OK).json(product);
+        return res.status(HttpStatus.OK).json({
+            message: 'A single product has been retrieved',
+            product
+        });
     }
 
     /**
@@ -58,7 +61,10 @@ export class IriStoreController {
     @Get('products')
     async getProducts(@Res() res) {
         const products = await this.iriStoreService.getProducts();
-        return res.status(HttpStatus.OK).json(products);
+        return res.status(HttpStatus.OK).json({
+            message: 'All products have been retrieved',
+            products
+        });
     }
 
     /**
@@ -79,7 +85,7 @@ export class IriStoreController {
             throw new NotFoundException('Product does not exist!');
         }
         return res.status(HttpStatus.OK).json({
-            message: 'Product has been successfully updated',
+            message: 'Product has been successfully updated!',
             product: editedProduct,
         });
     }
