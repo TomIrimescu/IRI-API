@@ -11,9 +11,15 @@ import {
     Query,
     Delete
 } from '@nestjs/common';
-import { IriStoreService } from './iri-store.service';
-import { CreateProductDTO } from './dto/create-product.dto';
-import { ValidateObjectId } from './shared/pipes/validate-object-id.pipes';
+import {
+    IriStoreService
+} from './iri-store.service';
+import {
+    CreateProductDTO
+} from './dto/create-product.dto';
+import {
+    ValidateObjectId
+} from './shared/pipes/validate-object-id.pipes';
 
 @Controller('iri-store')
 export class IriStoreController {

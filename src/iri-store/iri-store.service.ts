@@ -1,8 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
-import { Product } from './interfaces/product.interface';
-import { CreateProductDTO } from './dto/create-product.dto';
+import {
+    Injectable
+} from '@nestjs/common';
+import {
+    Model
+} from 'mongoose';
+import {
+    InjectModel
+} from '@nestjs/mongoose';
+import {
+    Product
+} from './interfaces/product.interface';
+import {
+    CreateProductDTO
+} from './dto/create-product.dto';
 
 @Injectable()
 export class IriStoreService {
@@ -19,7 +29,7 @@ export class IriStoreService {
         const product = await this.productModel
             .findById(productID)
             .exec();
-            console.log('get single product:\n' + product);
+        console.log('get single product:\n' + product);
         return product;
     }
 
@@ -33,7 +43,7 @@ export class IriStoreService {
         console.log('@Put Product ID: ' + productID);
         const editedProduct = await this.productModel
             .findByIdAndUpdate(productID, createProductDTO, { new: true });
-            console.log('show edited product:\n' + editedProduct);
+        console.log('show edited product:\n' + editedProduct);
         return editedProduct;
     }
 
@@ -41,7 +51,7 @@ export class IriStoreService {
         console.log('@Delete Product ID: ' + productID);
         const deletedProduct = await this.productModel
             .findByIdAndRemove(productID);
-            console.log('show deleted product:\n' + deletedProduct);
+        console.log('show deleted product:\n' + deletedProduct);
         return deletedProduct;
     }
 }
