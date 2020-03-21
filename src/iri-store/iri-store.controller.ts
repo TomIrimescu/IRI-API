@@ -21,7 +21,7 @@ import {
     ValidateObjectId
 } from './shared/pipes/validate-object-id.pipes';
 
-@Controller('iri-store')
+@Controller('api')
 export class IriStoreController {
 
     constructor(private iriStoreService: IriStoreService) { }
