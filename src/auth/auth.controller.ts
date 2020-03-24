@@ -16,8 +16,6 @@ import {
 import * as password from 'password-hash-and-salt';
 import * as jwt from 'jsonwebtoken';
 
-
-
 @Controller("login")
 export class AuthController {
 
@@ -48,7 +46,7 @@ export class AuthController {
                     const authJwtToken =
                         jwt.sign({ email, roles: user.roles },
                             JWT_SECRET);
-
+                    // jwt.io
                     resolve({ authJwtToken });
                 }
             );
