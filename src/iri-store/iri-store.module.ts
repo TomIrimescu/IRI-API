@@ -1,8 +1,18 @@
-import { Module } from '@nestjs/common';
-import { IriStoreService } from './iri-store.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ProductSchema } from './schemas/product.schema';
-import { IriStoreController } from './iri-store.controller';
+import {
+    Module
+} from '@nestjs/common';
+import {
+    IriStoreService
+} from './iri-store.service';
+import {
+    MongooseModule
+} from '@nestjs/mongoose';
+import {
+    ProductSchema
+} from './schemas/product.schema';
+import {
+    IriStoreController
+} from './iri-store.controller';
 
 @Module({
     imports: [
@@ -11,4 +21,4 @@ import { IriStoreController } from './iri-store.controller';
     providers: [IriStoreService],
     controllers: [IriStoreController]
 })
-export class IriStoreModule{}
+export class IriStoreModule { }

@@ -1,5 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { IriStoreController } from './iri-store.controller';
+import {
+  Test,
+  TestingModule
+} from '@nestjs/testing';
+import {
+  IriStoreController
+} from './iri-store.controller';
 
 describe('IriStore Controller', () => {
   let controller: IriStoreController;
