@@ -11,11 +11,11 @@ import {
 import {
     InjectModel
 } from '@nestjs/mongoose';
-// import {
-//     JWT_SECRET
-// } from '../constants';
-// import * as password from 'password-hash-and-salt';
-// import * as jwt from 'jsonwebtoken';
+import {
+    JWT_SECRET
+} from '../constants';
+import * as password from 'password-hash-and-salt';
+import * as jwt from 'jsonwebtoken';
 
 @Controller("api")
 export class AuthController {
@@ -43,32 +43,22 @@ export class AuthController {
             console.log(`User: ${email} is in the database.`);
         }
 
-        // return new Promise((resolve, reject) => {
-        //     password(plaintextPassword).verifyAgainst(
-        //         user.passwordHash,
-        //         (err, verified) => {
-        //             if (!verified) {
-        //                 reject(new UnauthorizedException());
-        //             }
-
-        //             const authJwtToken =
-        //                 jwt.sign({ email, roles: user.roles },
-        //                     JWT_SECRET);
-        //             // jwt.io
-        //             resolve({ authJwtToken });
-        //         }
-        //     );
-        // });
-
         return new Promise((resolve, reject) => {
-            (err) => {
-                reject(new UnauthorizedException());
-                console.log(err);
-            }
+            password(plaintextPassword).verifyAgainst(
+                user.passwordHash,
+                (err, verified) => {
+                    if (!verified) {
+                        reject(new UnauthorizedException());
+                    }
 
-            resolve({ plaintextPassword, email });
-            }
-        );
+                    const authJwtToken =
+                        jwt.sign({ email, roles: user.roles },
+                            JWT_SECRET);
+                    // jwt.io
+                    resolve({ authJwtToken });
+                }
+            );
+        });
 
     }
 
