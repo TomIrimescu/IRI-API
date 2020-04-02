@@ -37,10 +37,10 @@ export class AuthController {
         const user = await this.userModel.findOne({ email });
 
         if (!user) {
-            console.log(`User: ${email} does not exist in the database.`);
+            console.log(`User: ${email} does NOT exist in the database.`);
             throw new UnauthorizedException();
         } else {
-            console.log(`User: ${email} is in the database.`);
+            console.log(`User: ${email} IS IN THE DATABASE.`);
         }
 
         return new Promise((resolve, reject) => {

@@ -11,7 +11,6 @@ import {
 } from '../constants';
 import * as jwt from 'jsonwebtoken';
 
-
 @Injectable()
 export class GetUserMiddleware implements NestMiddleware {
 

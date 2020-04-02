@@ -1,24 +1,32 @@
 import {
-  Module
+  MiddlewareConsumer,
+  Module,
+  NestModule
 } from '@nestjs/common';
-import {
-  AppController
-} from './app.controller';
-import {
-  AppService
-} from './app.service';
-import {
-  MongooseModule
-} from '@nestjs/mongoose';
 import {
   IriStoreModule
 } from './iri-store/iri-store.module';
 import {
+  AuthModule
+} from './auth/auth.module';
+import {
+  MongooseModule
+} from '@nestjs/mongoose';
+import {
   MONGO_CONNECTION
 } from './constants';
 import {
-  AuthModule
-} from './auth/auth.module';
+  GetUserMiddleware
+} from './middleware/get-user.middleware';
+import {
+  AppService
+} from './app.service';
+import {
+  AppController
+} from './app.controller';
+import {
+  IriStoreController
+} from './iri-store/iri-store.controller';
 
 @Module({
   imports: [
@@ -29,4 +37,8 @@ import {
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(GetUserMiddleware).forRoutes(IriStoreController);
+  }  
+}
