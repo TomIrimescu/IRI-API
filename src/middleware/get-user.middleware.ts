@@ -6,10 +6,9 @@ import {
     Request,
     Response
 } from "express";
-import {
-    JWT_SECRET
-} from '../constants';
 import * as jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Injectable()
 export class GetUserMiddleware implements NestMiddleware {
@@ -25,7 +24,7 @@ export class GetUserMiddleware implements NestMiddleware {
 
         try {
 
-            const user = jwt.verify(authJwtToken, JWT_SECRET);
+            const user = jwt.verify(authJwtToken, process.env.JWT_SECRET);
 
             if (user) {
                 console.log("Found user details in JWT: ", user);

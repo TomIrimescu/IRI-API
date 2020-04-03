@@ -10,14 +10,13 @@ import {
 import {
     InjectModel
 } from '@nestjs/mongoose';
-import {
-    JWT_SECRET
-} from '../constants';
 import * as password from 'password-hash-and-salt';
 import * as jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Controller("api")
-export class AuthController {
+export class LoginController {
 
     constructor(
         @InjectModel("User") private userModel: Model) {}
@@ -43,7 +42,7 @@ export class AuthController {
 
                     const authJwtToken =
                         jwt.sign({ email, roles: user.roles },
-                            JWT_SECRET);
+                            process.env.JWT_SECRET);
 
                     resolve({ authJwtToken });
                 }

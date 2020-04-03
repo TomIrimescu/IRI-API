@@ -2,16 +2,15 @@
 import {
     Module
 } from '@nestjs/common';
-import {
-    AuthController
-} from './auth.controller';
+import { 
+    LoginController 
+} from './login.controller';
 import {
     MongooseModule
 } from '@nestjs/mongoose';
 import {
     UsersSchema
 } from '../auth/schema/users.schema';
-
 
 @Module({
     imports: [
@@ -22,9 +21,7 @@ import {
         ])
     ],
     controllers: [
-        AuthController
+        LoginController
     ]
 })
-export class AuthModule {
-
-}
+export class AuthModule {}

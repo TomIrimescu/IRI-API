@@ -13,9 +13,6 @@ import {
   MongooseModule
 } from '@nestjs/mongoose';
 import {
-  MONGO_CONNECTION
-} from './constants';
-import {
   GetUserMiddleware
 } from './middleware/get-user.middleware';
 import {
@@ -27,10 +24,12 @@ import {
 import {
   IriStoreController
 } from './iri-store/iri-store.controller';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
-    MongooseModule.forRoot(MONGO_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }),
+    MongooseModule.forRoot(process.env.MONGO_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }),
     IriStoreModule,
     AuthModule
   ],
