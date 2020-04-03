@@ -1,7 +1,6 @@
 import {
     Body,
     Controller,
-    Get,
     Post,
     UnauthorizedException
 } from '@nestjs/common';
@@ -23,13 +22,6 @@ export class AuthController {
     constructor(
         @InjectModel("User") private userModel: Model) {}
 
-    @Get('login')
-    async getUsers(): Promise<any[]> {
-        const users = await this.userModel.find().exec();
-        console.log('get all users:\n' + users);
-        return users;
-    }
-
     @Post('login')
     async login(@Body("email") email: string,
         @Body("password") plaintextPassword: string) {
@@ -37,10 +29,8 @@ export class AuthController {
         const user = await this.userModel.findOne({ email });
 
         if (!user) {
-            console.log(`User: ${email} does NOT exist in the database.`);
+            console.log(`User: does not exist in the database.`);
             throw new UnauthorizedException();
-        } else {
-            console.log(`User: ${email} IS IN THE DATABASE.`);
         }
 
         return new Promise((resolve, reject) => {
@@ -54,7 +44,7 @@ export class AuthController {
                     const authJwtToken =
                         jwt.sign({ email, roles: user.roles },
                             JWT_SECRET);
-                    // jwt.io
+
                     resolve({ authJwtToken });
                 }
             );

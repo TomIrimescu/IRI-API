@@ -37,8 +37,17 @@ import {
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule implements NestModule {
+
   configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(GetUserMiddleware).forRoutes(IriStoreController);
-  }  
+
+    consumer
+      .apply(GetUserMiddleware)
+      .forRoutes(
+        IriStoreController
+      );
+
+  }
+
 }
