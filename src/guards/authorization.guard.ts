@@ -5,13 +5,10 @@ import {
     Injectable
 } from '@nestjs/common';
 
-
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
 
-    constructor(private allowedRoles: string[]) {
-
-    }
+    constructor(private allowedRoles: string[]) {}
 
     canActivate(context: ExecutionContext): boolean {
 
@@ -48,8 +45,5 @@ export class AuthorizationGuard implements CanActivate {
         });
 
         return allowed;
-
     }
-
-
 }

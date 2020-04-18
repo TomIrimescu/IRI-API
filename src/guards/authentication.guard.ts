@@ -5,7 +5,6 @@ import {
     UnauthorizedException
 } from '@nestjs/common';
 
-
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 

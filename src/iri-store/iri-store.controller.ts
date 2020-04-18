@@ -9,7 +9,8 @@ import {
     Body,
     Put,
     Query,
-    Delete
+    Delete,
+    UseGuards
 } from '@nestjs/common';
 import {
     IriStoreService
@@ -20,6 +21,12 @@ import {
 import {
     ValidateObjectId
 } from './shared/pipes/validate-object-id.pipes';
+import { 
+    AdminGuard 
+} from 'src/guards/admin.guard';
+import { 
+    AuthenticationGuard 
+} from 'src/guards/authentication.guard';
 
 @Controller('api')
 export class IriStoreController {
@@ -33,6 +40,7 @@ export class IriStoreController {
      * @param createProductDTO 
      */
     @Post('/product')
+    @UseGuards(AuthenticationGuard, AdminGuard)
     async addProduct(@Res() res, @Body() createProductDTO: CreateProductDTO) {
         const newProduct = await this.iriStoreService.addProduct(createProductDTO);
         return res.status(HttpStatus.OK).json({
@@ -47,6 +55,7 @@ export class IriStoreController {
      * @param productID 
      */
     @Get('product/:productID')
+    @UseGuards(AuthenticationGuard, AdminGuard)
     async getProduct(@Res() res, @Param('productID', new ValidateObjectId()) productID) {
         const product = await this.iriStoreService.getProduct(productID);
         if (!product) {
@@ -75,6 +84,7 @@ export class IriStoreController {
      * @param createProductDTO 
      */
     @Put('/edit')
+    @UseGuards(AuthenticationGuard, AdminGuard)
     async editProduct(
         @Res() res,
         @Query('productID', new ValidateObjectId()) productID,
@@ -96,6 +106,7 @@ export class IriStoreController {
      * @param productID 
      */
     @Delete('/delete')
+    @UseGuards(AuthenticationGuard, AdminGuard)
     async deleteProduct(@Res() res, @Query('productID', new ValidateObjectId()) productID) {
         const deletedProduct = await this.iriStoreService.deleteProduct(productID);
         if (!deletedProduct) {
