@@ -23,10 +23,10 @@ import {
 } from './shared/pipes/validate-object-id.pipes';
 import { 
     AdminGuard 
-} from 'src/guards/admin.guard';
+} from 'src/auth/guards/admin.guard';
 import { 
     AuthenticationGuard 
-} from 'src/guards/authentication.guard';
+} from 'src/auth/guards/authentication.guard';
 
 @Controller('api')
 export class IriStoreController {
