@@ -5,24 +5,24 @@ import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 export class ProductType {
   @Field(() => ID)
   @IsString()
-  readonly id?: string;
+  id?: string;
 
   @Field()
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  name: string;
 
   @Field()
   @IsString()
-  readonly category: string;
+  category: string;
 
   @Field()
   @IsString()
-  readonly description: string;
+  description: string;
 
   @Field(() => Int)
   @IsNumber()
-  readonly price: number;
+  price: number;
 
 
 }

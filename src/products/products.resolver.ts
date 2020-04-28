@@ -24,18 +24,20 @@ export class ProductsResolver {
 
   @Mutation(() => ProductType)
   async createProduct(@Args('input') input: ProductInput): Promise<ProductInput> {
-    return await this.productsService.create(input);
+    const createdProduct =  await this.productsService.create(input);
+    return createdProduct;
   }
 
   @Mutation(() => ProductType)
   async updateProduct(
     @Args('id') id: string,
     @Args('input') input: ProductInput,): Promise<ProductInput> {
-    return await this.productsService.update(id, input);
+      const updatedProduct =  await this.productsService.update(id, input);
+      return updatedProduct;
   }
 
   @Mutation(() => ProductType)
-  async deleteProduct(@Args('id') id: string): Promise<ProductInput> {
+  async deleteProduct(@Args('id') id: string): Promise<boolean> {
     return await this.productsService.delete(id);
   }
 
