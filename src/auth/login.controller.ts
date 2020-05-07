@@ -10,7 +10,7 @@ import {
 import {
     InjectModel
 } from '@nestjs/mongoose';
-import * as password from 'password-hash-and-salt';
+import password from 'password-hash-and-salt';
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 dotenv.config();
