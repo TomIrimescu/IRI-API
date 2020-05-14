@@ -5,6 +5,6 @@ import {
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello TOMCAT!';
+    return 'Hello tomcat!';
   }
 }
